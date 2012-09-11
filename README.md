@@ -18,3 +18,5 @@ then, it turns out that irreducible factorizations need not be unique. In partic
 and it can be shown that each of <code>2, 3, 1+sqrt(-5), 1-sqrt(-5)</code> are irreducible (ie they "can't be broken down anymore" under multiplication).
 
 The ultimate aim of this software distribution is to compute, for given <code>a</code>,<code>b</code>, and <code>d</code>, all of the irreducible factorizations of <code>a + b * sqrt(d)</code> in <code>Z[sqrt(d)]</code>.
+
+Note that this is a work in progress.
