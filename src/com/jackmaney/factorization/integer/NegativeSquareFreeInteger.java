@@ -1,6 +1,6 @@
 package com.jackmaney.factorization.integer;
 
-import com.jackmaney.factorization.FactorPair;
+import com.jackmaney.factorization.Power;
 import com.jackmaney.factorization.Factorization;
 import com.jackmaney.factorization.MInteger;
 
@@ -37,7 +37,7 @@ public class NegativeSquareFreeInteger {
 		
 		Factorization<MInteger> primes = PrimeFactors.find(new MInteger(d));
 		
-		for (FactorPair<MInteger> factorPair : primes.getFactorization()) {
+		for (Power<MInteger> factorPair : primes.getFactorization()) {
 			if(factorPair.getExponent()>1)
 			{
 				return false;

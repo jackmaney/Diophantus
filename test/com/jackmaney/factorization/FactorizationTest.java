@@ -12,10 +12,10 @@ public class FactorizationTest {
 	@Before
 	public void setup()
 	{
-		Vector<FactorPair<MInteger>> v = new Vector<>();
-		v.add(new FactorPair<MInteger>(new MInteger(2),4));
-		v.add(new FactorPair<MInteger>(new MInteger(3), 5));
-		v.add(new FactorPair<MInteger>(new MInteger(5)));
+		Vector<Power<MInteger>> v = new Vector<>();
+		v.add(new Power<MInteger>(new MInteger(2),4));
+		v.add(new Power<MInteger>(new MInteger(3), 5));
+		v.add(new Power<MInteger>(new MInteger(5)));
 		
 		f = new Factorization<>(v);
 	}

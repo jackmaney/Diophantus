@@ -3,7 +3,7 @@ package com.jackmaney.factorization.integer;
 import java.util.Arrays;
 import java.util.Vector;
 
-import com.jackmaney.factorization.FactorPair;
+import com.jackmaney.factorization.Power;
 import com.jackmaney.factorization.Factorization;
 import com.jackmaney.factorization.MInteger;
 
@@ -26,11 +26,11 @@ public class PrimeFactors {
 			throw new IllegalArgumentException("Why are you trying to find the prime factors of zero or 1?!");
 		}
 		
-		Vector<FactorPair<MInteger>> result = new Vector<>();
+		Vector<Power<MInteger>> result = new Vector<>();
 		
 		if(n<=3)
 		{
-			result.addElement(new FactorPair<MInteger>(new MInteger(n)));
+			result.addElement(new Power<MInteger>(new MInteger(n)));
 		}
 		else
 		{
@@ -76,7 +76,7 @@ public class PrimeFactors {
 				{
 					first=false;
 					currentPrime = integer;
-					result.add(new FactorPair<MInteger>(new MInteger(integer)));
+					result.add(new Power<MInteger>(new MInteger(integer)));
 				}
 				else if(currentPrime == integer)
 				{
@@ -87,7 +87,7 @@ public class PrimeFactors {
 				else
 				{
 					currentPrime = integer;
-					result.add(new FactorPair<MInteger>(new MInteger(integer)));
+					result.add(new Power<MInteger>(new MInteger(integer)));
 				}
 			}
 			
