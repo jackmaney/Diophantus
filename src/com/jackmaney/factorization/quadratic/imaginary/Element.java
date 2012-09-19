@@ -5,31 +5,45 @@ import java.util.Comparator;
 import com.jackmaney.factorization.Multiplicative;
 import com.jackmaney.factorization.integer.NegativeSquareFreeInteger;
 
-public class Element implements Multiplicative<Element>,Comparator<Element>{
+public class Element implements Multiplicative<Element>,Comparator<Element>,Comparable<Element>{
 	
 	private int a,b;
 	private NegativeSquareFreeInteger d;
 	
-	Element(int a,int b,int d)
+	public Element(int a,int b,int d)
 	{
 		this.a = a;
 		this.b = b;
 		this.d = new NegativeSquareFreeInteger(d);
 	}
 	
-	Element(int a,int b,NegativeSquareFreeInteger d)
+	public Element(int a,int b,NegativeSquareFreeInteger d)
 	{
-		this(a,b,d.getValue());
+		this(a,b,d.intValue());
 	}
 
 	/**
 	 * Two <code>Element</code> objects are equal precisely when each of the respective real and imaginary parts are equal.
+	 * 
+	 * @param other
+	 * @return {@link Boolean}
 	 */
 	public boolean equals(Element other) {
 
 		return getA()==other.getA() && getB() == other.getB() && getD() == other.getD();
 	}
 	
+	/**
+	 * Returns the stringified version of this {@link Element} object. For example, 
+	 * <code>
+	 * Element e = new Element(2,3,-6);
+	 * System.out.println(e.toString());
+	 * </code>
+	 * 
+	 * results in <code>2 + 3 * sqrt(-6)</code> being printed out.
+	 * 
+	 * @return {@link String}
+	 */
 	@Override
 	public String toString() {
 		return getA() + " + " + getB() + " * sqrt(" + getD() + ")";
@@ -81,9 +95,15 @@ public class Element implements Multiplicative<Element>,Comparator<Element>{
 		return getA() * getA() - getD() * getB() * getB();
 	}
 	
-	private int norm(Element e)
+	
+	public static int norm(Element e)
 	{
 		return e.norm();
+	}
+	
+	public static int norm(int a,int b,NegativeSquareFreeInteger d)
+	{
+		return a * a - d.intValue() * b * b;
 	}
 	
 	
@@ -184,6 +204,11 @@ public class Element implements Multiplicative<Element>,Comparator<Element>{
 		}
 	}
 
+	
+	@Override
+	public int compareTo(Element o) {
+		return compare(this,o);
+	}
 
 	
 	public int getA() {
@@ -215,7 +240,7 @@ public class Element implements Multiplicative<Element>,Comparator<Element>{
 
 
 	public int getD() {
-		return d.getValue();
+		return d.intValue();
 	}
 
 
@@ -233,6 +258,8 @@ public class Element implements Multiplicative<Element>,Comparator<Element>{
 	{
 		this.d = d;
 	}
+
+
 
 	
 }

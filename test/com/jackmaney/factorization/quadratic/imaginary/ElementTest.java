@@ -13,8 +13,10 @@ public class ElementTest {
 	
 	@Test
 	public void testEqualsElement() {
-		assertTrue(e2.equals(new Element(2,1,-5)));
+		Element e2Clone = new Element(2,1,-5);
+		assertTrue(e2.equals(e2Clone));
 		assertFalse(e1.equals(e2));
+		assertFalse(e2 == e2Clone);
 	}
 
 	@Test
@@ -54,6 +56,13 @@ public class ElementTest {
 	public void testCompare() {
 		assertTrue(e1.compare(e1, e2) == -1);
 		assertTrue(e3.compare(e3, e1) == 1);
+	}
+	
+	@Test
+	public void testCompareTo()
+	{
+		assertTrue(e1.compareTo(e2) == -1);
+		assertTrue(e3.compareTo(e1) == 1);
 	}
 
 }

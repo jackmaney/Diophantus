@@ -5,13 +5,17 @@ import com.jackmaney.factorization.Factorization;
 import com.jackmaney.factorization.MInteger;
 
 
-public class NegativeSquareFreeInteger {
+public class NegativeSquareFreeInteger extends Number {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6975534683932279247L;
 	private final int value;
 	
 	public NegativeSquareFreeInteger(int value)
 	{
-		if(isSquareFree(value))
+		if(value < 0 && isSquareFree(value))
 		{
 			this.value=value;
 		}
@@ -47,9 +51,29 @@ public class NegativeSquareFreeInteger {
 		return true;
 	}
 	
-	
-	public int getValue() {
+
+
+	@Override
+	public int intValue() {
 		return value;
+	}
+
+
+	@Override
+	public long longValue() {
+		return (long)value;
+	}
+
+
+	@Override
+	public float floatValue() {
+		return (float)value;
+	}
+
+
+	@Override
+	public double doubleValue() {
+		return (double)value;
 	}
 	
 }

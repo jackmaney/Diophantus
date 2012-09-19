@@ -2,6 +2,8 @@ package com.jackmaney.factorization;
 
 import java.util.Comparator;
 
+import org.hamcrest.core.IsInstanceOf;
+
 /**
  * 
  * @author Jack Maney
@@ -56,7 +58,8 @@ public class Power<T extends Multiplicative<T> & Comparable<T>>
 	
 	/**
 	 * Takes the result of the <code>toString()</code> method of our <code>base</code>, 
-	 * tacks on a "^", and then tacks on the <code>exponent</code>.
+	 * tacks on a "^", and then tacks on the <code>exponent</code>. 
+	 * The base is wrapped around parentheses if <code>base instanceof {@link MInteger}</code>.
 	 * 
 	 * @return String
 	 */
@@ -64,9 +67,20 @@ public class Power<T extends Multiplicative<T> & Comparable<T>>
 	public String toString() {
 		
 		StringBuffer result = new StringBuffer();
-		result.append(getBase().toString());
-		result.append("^");
-		result.append(getExponent());
+		
+		if(getBase() instanceof MInteger )
+		{
+			result.append(getBase().toString());
+			result.append("^");
+			result.append(getExponent());
+		}
+		else
+		{
+			result.append("(").append(getBase().toString()).append(")");
+			result.append("^").append(getExponent());
+		}
+		
+		
 		
 		return result.toString();
 	}
