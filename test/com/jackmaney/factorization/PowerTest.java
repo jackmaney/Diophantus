@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.jackmaney.factorization.quadratic.imaginary.Element;
-import com.jackmaney.factorization.quadratic.imaginary.ElementFinder;
 
 public class PowerTest {
 

@@ -2,8 +2,6 @@ package com.jackmaney.factorization;
 
 import java.util.Comparator;
 
-import org.hamcrest.core.IsInstanceOf;
-
 /**
  * 
  * @author Jack Maney

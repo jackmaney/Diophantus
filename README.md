@@ -1,4 +1,4 @@
-Factorization
+Diophantus
 =======
 
 In order to learn Java, I'm reconstructing some (long since lost) code that I wrote in Mathematica as a graduate student.
@@ -19,4 +19,16 @@ and it can be shown that each of <code>2, 3, 1+sqrt(-5), 1-sqrt(-5)</code> are i
 
 The ultimate aim of this software distribution is to compute, for given <code>a</code>,<code>b</code>, and <code>d</code>, all of the irreducible factorizations of <code>a + b * sqrt(d)</code> in <code>Z[sqrt(d)]</code>.
 
-Note that this is a work in progress.
+Why "Diophantus"?
+-------
+
+[Diophantus of Alexandria](http://en.wikipedia.org/wiki/Diophantus) was an ancient Greek mathematician and philosopher after whom [Diophantine equations](http://en.wikipedia.org/wiki/Diophantine_equation) are named. Finding irreducible factors of a given element of <code>Z[sqrt(d)]</code> hinges upon finding integer solutions for <code>x</code> and <code>y</code> to the following Diophantine equation:
+
+<center><pre>x^2 - d * y^2 = n</pre></center>
+
+Hence, the name.
+
+Note
+-------
+
+This is a work in progress.
