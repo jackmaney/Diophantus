@@ -21,24 +21,13 @@ public class Factorization<T extends Multiplicative<T> & Comparable<T>>{
 	 */
 	private Vector<Power<T>> factorization;
 	
-	/**
-	 * <p>This constructor reshapes the argument to consolidate powers of any <code>Power<T></code> 
-	 * objects that have the same base.</p> 
-	 * 
-	 * <p>As a simple example using integers, if <code>3^4</code>
-	 * (ie 3 to the fourth power) and <code>3^3</code> were each power elements, then 
-	 * they'd be combined into <code>3^7</code> in our factorization.</p>  
-	 * 
-	 * 
-	 * @param f		A <code>Vector</code> of <code>Power<T></code> objects, conceptually representing the factorization.
-	 */
-	public Factorization(Vector<Power<T>> f)
-	{
+	private Vector<Power<T>> consolidate(Vector<Power<T>> v){
+		
 		Vector<Power<T>> result = new Vector<>();
 		
 		Hashtable<T, Integer> hash = new Hashtable<>();
 		
-		for (Power<T> factorPair : f) 
+		for (Power<T> factorPair : v) 
 		{
 			
 			if(factorPair.getExponent() == 0)
@@ -61,8 +50,47 @@ public class Factorization<T extends Multiplicative<T> & Comparable<T>>{
 			result.add(new Power<T>(b,hash.get(b)));
 		}
 		
-		this.factorization = result;
+		return result;
 	}
+	
+	private Vector<Power<T>> consolidateArray (T[] arr) {
+		
+		Vector<Power<T>> argsToPass = new Vector<>();
+		
+		for (T t : arr) {
+			argsToPass.addElement(new Power<T>(t));	
+		}
+		
+		return consolidate(argsToPass);
+	}
+	
+	/**
+	 * <p>This constructor reshapes the argument to consolidate powers of any <code>Power<T></code> 
+	 * objects that have the same base.</p> 
+	 * 
+	 * <p>As a simple example using integers, if <code>3^4</code>
+	 * (ie 3 to the fourth power) and <code>3^3</code> were each power elements, then 
+	 * they'd be combined into <code>3^7</code> in our factorization.</p>  
+	 * 
+	 * 
+	 * @param f		A <code>Vector</code> of <code>Power<T></code> objects, conceptually representing the factorization.
+	 */
+	public Factorization(Vector<Power<T>> f)
+	{	
+		this.factorization = consolidate(f);
+	}
+	
+	/**
+	 * A similar constructor for an array of <code>T</code> values. 
+	 * In this case, the exponents for the <code>Power</code> objects are all considered to be 1.
+	 * 
+	 * @param arr
+	 */
+	public Factorization(T[] arr) {
+		this.factorization = consolidateArray(arr);
+	}
+	
+	
 	
 	/**
 	 * This method multiplies--via the <code>multiply()</code> method provided 

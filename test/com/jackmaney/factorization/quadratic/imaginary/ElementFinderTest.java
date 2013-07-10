@@ -12,6 +12,8 @@ public class ElementFinderTest {
 	public void testElementsOfNormIntInt() {
 		Vector<Element> v = ElementFinder.elementsOfNorm(81, -14);
 		
+		assertTrue(v.size() == 3);
+		
 		Vector<Element> expected = new Vector<>();
 		
 		expected.add(new Element(5,2,-14));

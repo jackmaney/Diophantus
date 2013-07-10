@@ -1,8 +1,14 @@
 package com.jackmaney.factorization.quadratic.imaginary;
 
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Vector;
 
 import com.jackmaney.factorization.Multiplicative;
+import com.jackmaney.factorization.Power;
+import com.jackmaney.factorization.integer.AllFactors;
 import com.jackmaney.factorization.integer.NegativeSquareFreeInteger;
 
 public class Element implements Multiplicative<Element>,Comparator<Element>,Comparable<Element>{
@@ -175,12 +181,136 @@ public class Element implements Multiplicative<Element>,Comparator<Element>,Comp
 
 	}
 	
+	private HashSet<Element> getAllFactors() {
+		
+		int d = getD();
+		int n = norm();
+		
+		HashSet<Element> result = new HashSet<>();
+		
+		Vector<Integer> normFactors = AllFactors.find(n);
+		
+		for (Integer normFactor : normFactors) {
+			
+			Vector<Element> potentialDivisors = ElementFinder.elementsOfNorm(normFactor, d);
+			
+			for (Element element : potentialDivisors) {
+				Element quotient = element.divides(this);
+				if(quotient != null)
+				{
+					result.add(element);
+					result.add(quotient);
+				}
+			}
+		}
+		
+		return result;
+	}
+	
+	private HashSet<Element> findAllIrreducibles() {
+		
+		int n = norm();
+		int d = getD();
+		
+		if(n == 0 || n == 1){
+			throw new IllegalArgumentException();
+		}
+		
+		HashSet<Element> allFactors = getAllFactors();
+		HashSet<Element> result = 
+		
+		Iterator<Element> it = allFactors.iterator();
+		
+		//TODO: There's a smarter way: store the structure using a tree where the nodes represent factors of the norm and each node also represents a list of elements having that norm.
+		
+		
+		
+		return null;
+	}
+	
+	private Element peelOffIrreducible() {
+		int d = getD();
+		int n = norm();
+		
+		if(n == 1 || n == 0)
+		{
+			throw new IllegalArgumentException();
+		}
+		
+		int smallestNormDivisor = 0;
+		
+		for(int i = 2; i < Math.floor(Math.sqrt(n)); i++) {
+			if(n % i == 0){
+				smallestNormDivisor = i;
+				break;
+			}
+		}
+		
+		if(smallestNormDivisor == 0) { //norm is prime, we're done
+			return this;
+		}
+		
+		Vector<Element> possibleIrrs = ElementFinder.elementsOfNorm(smallestNormDivisor, d);
+		
+		if(possibleIrrs.size() == 0) {
+			return this;
+		}
+		else {
+			for (Element element : possibleIrrs) {
+				Element quotient = element.divides(this);
+				
+				if(quotient != null) {
+					if(element.getA() < 0){
+						return new Element(-1 * element.getA(),-1 * element.getB(),d);
+					}
+					else{
+						return element;
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
+	
+	public boolean isIrreducible()
+	{
+		int a = getA();
+		int b = getB();
+		int d = getD();
+		int n = norm();
+		
+		Vector<Integer> normFactors = AllFactors.find(n);
+		
+		for (Integer normFactor : normFactors) {
+			
+			Vector<Element> potentialDivisors = ElementFinder.elementsOfNorm(normFactor, d);
+			
+			for (Element element : potentialDivisors) {
+				
+				Element quotient = element.divides(this);
+				if(quotient != null){
+					return false;
+				}
+			}
+		}
+		
+		return true;
+	}
+	
 	@Override
 	public int compare(Element o1, Element o2) {
 		
 		if(o1.getD()!=o2.getD())
 		{
 			throw new IllegalArgumentException();
+		}
+		
+		if(o1.norm() < o2.norm()){
+			return -1;
+		}
+		else if(o1.norm() > o2.norm()){
+			return 1;
 		}
 		
 		if(o1.getA() < o2.getA())
