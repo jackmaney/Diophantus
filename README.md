@@ -1,3 +1,4 @@
+[![Stories in Ready](http://badge.waffle.io/jackmaney/Diophantus.png)](http://waffle.io/jackmaney/Diophantus)  
 Diophantus
 =======
 
