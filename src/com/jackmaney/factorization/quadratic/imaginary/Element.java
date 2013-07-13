@@ -1,15 +1,15 @@
 package com.jackmaney.factorization.quadratic.imaginary;
 
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Vector;
 
+import javax.management.RuntimeErrorException;
+
 import com.jackmaney.factorization.Multiplicative;
-import com.jackmaney.factorization.Power;
-import com.jackmaney.factorization.integer.AllFactors;
 import com.jackmaney.factorization.integer.NegativeSquareFreeInteger;
+import com.jackmaney.factorization.integer.Util;
 
 public class Element implements Multiplicative<Element>,Comparator<Element>,Comparable<Element>{
 	
@@ -135,8 +135,8 @@ public class Element implements Multiplicative<Element>,Comparator<Element>,Comp
 			throw new IllegalArgumentException("Mismatching values of d: " + getD() + " vs " + other.getD());
 		}
 		
-		double intRatioNorms = norm(other)/norm();
-		if(norm() * intRatioNorms != norm(other))
+		
+		if(!Util.intDivides(norm(), norm(other)))
 		{
 			return null; //If norm(this) doesn't divide norm(other), then we don't have a prayer.
 		}
@@ -181,14 +181,14 @@ public class Element implements Multiplicative<Element>,Comparator<Element>,Comp
 
 	}
 	
-	private HashSet<Element> getAllFactors() {
+	public Vector<Element> getAllFactors() {
 		
 		int d = getD();
 		int n = norm();
 		
-		HashSet<Element> result = new HashSet<>();
+		Vector<Element> result = new Vector<>();
 		
-		Vector<Integer> normFactors = AllFactors.find(n);
+		Vector<Integer> normFactors = Util.findAllFactors(n);
 		
 		for (Integer normFactor : normFactors) {
 			
@@ -198,8 +198,13 @@ public class Element implements Multiplicative<Element>,Comparator<Element>,Comp
 				Element quotient = element.divides(this);
 				if(quotient != null)
 				{
-					result.add(element);
-					result.add(quotient);
+					if(!result.contains(quotient)){
+						result.add(quotient);
+					}
+					
+					if(!result.contains(element)){
+						result.add(element);
+					}
 				}
 			}
 		}
@@ -207,96 +212,51 @@ public class Element implements Multiplicative<Element>,Comparator<Element>,Comp
 		return result;
 	}
 	
-	private HashSet<Element> findAllIrreducibles() {
+	private Vector<Element> findAllIrreducibles() {
 		
 		int n = norm();
-		int d = getD();
 		
 		if(n == 0 || n == 1){
 			throw new IllegalArgumentException();
 		}
 		
-		HashSet<Element> allFactors = getAllFactors();
-		HashSet<Element> result = 
+		Vector<Element> result = new Vector<>(); 
 		
-		Iterator<Element> it = allFactors.iterator();
+		Vector<Element> allFactors = getAllFactors();
 		
-		//TODO: There's a smarter way: store the structure using a tree where the nodes represent factors of the norm and each node also represents a list of elements having that norm.
+		//TODO: Replace this with a more sensible algorithm
 		
-		
-		
-		return null;
-	}
-	
-	private Element peelOffIrreducible() {
-		int d = getD();
-		int n = norm();
-		
-		if(n == 1 || n == 0)
-		{
-			throw new IllegalArgumentException();
-		}
-		
-		int smallestNormDivisor = 0;
-		
-		for(int i = 2; i < Math.floor(Math.sqrt(n)); i++) {
-			if(n % i == 0){
-				smallestNormDivisor = i;
-				break;
-			}
-		}
-		
-		if(smallestNormDivisor == 0) { //norm is prime, we're done
-			return this;
-		}
-		
-		Vector<Element> possibleIrrs = ElementFinder.elementsOfNorm(smallestNormDivisor, d);
-		
-		if(possibleIrrs.size() == 0) {
-			return this;
-		}
-		else {
-			for (Element element : possibleIrrs) {
-				Element quotient = element.divides(this);
-				
-				if(quotient != null) {
-					if(element.getA() < 0){
-						return new Element(-1 * element.getA(),-1 * element.getB(),d);
-					}
-					else{
-						return element;
-					}
-				}
-			}
-		}
-		return null;
-	}
-	
-	
-	public boolean isIrreducible()
-	{
-		int a = getA();
-		int b = getB();
-		int d = getD();
-		int n = norm();
-		
-		Vector<Integer> normFactors = AllFactors.find(n);
-		
-		for (Integer normFactor : normFactors) {
+		for(int i = 0; i < allFactors.size(); i++){
 			
-			Vector<Element> potentialDivisors = ElementFinder.elementsOfNorm(normFactor, d);
+			Element alpha = allFactors.get(i);
+			boolean isIrreducible = true;
 			
-			for (Element element : potentialDivisors) {
+			// Find out the hard way if anything else divides alpha...
+			for(int j = 0; j < allFactors.size(); j++){
 				
-				Element quotient = element.divides(this);
-				if(quotient != null){
-					return false;
+				if(i == j){
+					continue;
 				}
+				
+				Element beta = allFactors.get(j);
+				
+				if(beta.divides(alpha) != null){
+					isIrreducible = false;
+					break;
+				}			
+			}
+			
+			if(isIrreducible){
+				result.add(alpha);
 			}
 		}
 		
-		return true;
+		return result;
 	}
+	
+	
+
+	
 	
 	@Override
 	public int compare(Element o1, Element o2) {

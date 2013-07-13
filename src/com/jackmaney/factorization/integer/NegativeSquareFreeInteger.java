@@ -39,7 +39,7 @@ public class NegativeSquareFreeInteger extends Number {
 			
 		
 		
-		Factorization<MInteger> primes = PrimeFactors.find(new MInteger(d));
+		Factorization<MInteger> primes = Util.getPrimeFactorization(d);
 		
 		for (Power<MInteger> factorPair : primes.getFactorization()) {
 			if(factorPair.getExponent()>1)

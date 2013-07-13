@@ -7,18 +7,65 @@ import com.jackmaney.factorization.Power;
 import com.jackmaney.factorization.Factorization;
 import com.jackmaney.factorization.MInteger;
 
-public class PrimeFactors {
+public class Util {
 	
-	public static Factorization<MInteger> find(MInteger n)
-	{
-		return find(n.intValue());
+	public static boolean intDivides(int a,int b){
+		double da = (double)a;
+		double db = (double)b;
+		double q = db / da;
+		
+		return q == (int)q;
 	}
-
-	public static Factorization<MInteger> find(int n)
+	
+	public static Vector<Integer> extractMultiples(Vector<Integer> numbers, int divisor)
+	{
+		Vector<Integer> result = new Vector<>();
+		
+		if(divisor == 0)
+		{
+			throw new IllegalArgumentException();
+		}
+		
+		for (Integer number : numbers) {
+			double q = (double)number / (double)divisor;
+			
+			if(q == (int)q){
+				result.add(number);
+			}
+		}
+		
+		return result;
+	}
+	
+	public static Vector<Integer> findAllFactors (int n)
 	{
 		if(n<0)
 		{
-			return find(-n);
+			return findAllFactors(-n);
+		}
+		else if(n<=1)
+		{
+			throw new IllegalArgumentException();
+		}
+		
+		Vector<Integer> result = new Vector<>();
+		
+		for(int i=2;i<n;i++)
+		{
+			if(n % i ==0)
+			{
+				result.add(i);
+			}
+		}
+		
+		return result;
+	}
+
+	public static Factorization<MInteger> getPrimeFactorization(int n)
+	{
+		if(n<0)
+		{
+			return getPrimeFactorization(-n);
 		}
 		
 		if(n<=1)
@@ -98,5 +145,6 @@ public class PrimeFactors {
 		
 		return new Factorization<MInteger>(result);
 	}
+
 
 }

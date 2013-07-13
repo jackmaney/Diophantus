@@ -25,7 +25,7 @@ public class PrimeFactorsTest {
 		
 		n*=37;
 		
-		f=PrimeFactors.find(n);
+		f=Util.getPrimeFactorization(n);
 	}
 	
 	@Test

@@ -77,7 +77,7 @@ public class AllFactorsTest {
 		v.add(2891770);
 		v.add(4337655);
 		
-		assertTrue(v.equals(AllFactors.find(n)));
+		assertTrue(v.equals(Util.findAllFactors(n)));
 	}
 
 }

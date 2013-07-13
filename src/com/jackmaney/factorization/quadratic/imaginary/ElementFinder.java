@@ -10,7 +10,7 @@ public class ElementFinder {
 	 * Given a positive integer <code>n</code> and a {@link NegativeSquareFreeInteger} <code>d</code>,
 	 * this method returns a vector of the elements of the form <code>a + b * sqrt(d)</code> where
 	 * {@link Element}.<code>norm(a,b,d) == n</code> and <code>a >= 0</code>, <em>if</em> any such elements exist.
-	 * Otherwise, <code>null</code> is returned.
+	 * Otherwise, an empty vector is returned.
 	 * 
 	 * @param n
 	 * @param d
@@ -49,7 +49,7 @@ public class ElementFinder {
 		 * and -a - b * sqrt(d) are all the same. 
 		 * 
 		 * However, since we don't care about unit multiples (ie multiples of plus or minus 1), 
-		 * we'll only return conjugate pairs of solutions having a>0.
+		 * we'll only return conjugate pairs of solutions having a>=0.
 		 * 
 		 * So, we proceed by starting with (a,b) pairs of (0,0), (0,1), (0,2), etc, stopping when 
 		 * the norm is too big. Then we start over with (1,0), (1,1), (1,2), etc, again, stopping
@@ -98,7 +98,7 @@ public class ElementFinder {
 			a++;
 		}
 		
-		return result.size() > 0 ? result : null;
+		return result;
 	}
 	
 	/**
