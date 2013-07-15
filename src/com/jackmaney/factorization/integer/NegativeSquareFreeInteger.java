@@ -53,6 +53,37 @@ public class NegativeSquareFreeInteger extends Number {
 	
 
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		return value;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof NegativeSquareFreeInteger)) {
+			return false;
+		}
+		NegativeSquareFreeInteger other = (NegativeSquareFreeInteger) obj;
+		if (value != other.value) {
+			return false;
+		}
+		return true;
+	}
+
+
 	@Override
 	public int intValue() {
 		return value;

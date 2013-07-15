@@ -8,6 +8,7 @@ import com.jackmaney.factorization.quadratic.imaginary.Element;
 
 public class Fiddle {
 
+	Object o = new Object();
 	public static void main(String[] args) {
 		Element e1 = new Element(6, 0, -5);
 		Element e2 = new Element(2,0,-5);

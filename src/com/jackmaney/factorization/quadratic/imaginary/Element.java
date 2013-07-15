@@ -3,6 +3,7 @@ package com.jackmaney.factorization.quadratic.imaginary;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.Vector;
 
 import javax.management.RuntimeErrorException;
@@ -28,17 +29,59 @@ public class Element implements Multiplicative<Element>,Comparator<Element>,Comp
 		this(a,b,d.intValue());
 	}
 
-	/**
-	 * Two <code>Element</code> objects are equal precisely when each of the respective real and imaginary parts are equal.
-	 * 
-	 * @param other
-	 * @return {@link Boolean}
-	 */
-	public boolean equals(Element other) {
-
-		return getA()==other.getA() && getB() == other.getB() && getD() == other.getD();
-	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + a;
+		result = prime * result + b;
+		result = prime * result + ((d == null) ? 0 : d.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof Element)) {
+			return false;
+		}
+		Element other = (Element) obj;
+		if (a != other.a) {
+			return false;
+		}
+		if (b != other.b) {
+			return false;
+		}
+		if (d == null) {
+			if (other.d != null) {
+				return false;
+			}
+		} else if (!d.equals(other.d)) {
+			return false;
+		}
+		return true;
+	}
+
 	/**
 	 * Returns the stringified version of this {@link Element} object. For example, 
 	 * <code>
@@ -188,6 +231,8 @@ public class Element implements Multiplicative<Element>,Comparator<Element>,Comp
 		
 		Vector<Element> result = new Vector<>();
 		
+		Set<Element> resultSet = new HashSet<>();
+		
 		Vector<Integer> normFactors = Util.findAllFactors(n);
 		
 		for (Integer normFactor : normFactors) {
@@ -198,15 +243,14 @@ public class Element implements Multiplicative<Element>,Comparator<Element>,Comp
 				Element quotient = element.divides(this);
 				if(quotient != null)
 				{
-					if(!result.contains(quotient)){
-						result.add(quotient);
-					}
-					
-					if(!result.contains(element)){
-						result.add(element);
-					}
+					resultSet.add(element);
+					resultSet.add(quotient);
 				}
 			}
+		}
+		
+		for (Element element : resultSet) {
+			result.add(element);
 		}
 		
 		return result;

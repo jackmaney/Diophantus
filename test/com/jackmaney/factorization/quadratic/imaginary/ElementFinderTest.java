@@ -28,7 +28,7 @@ public class ElementFinderTest {
 		}
 		
 		v=ElementFinder.elementsOfNorm(7, -5);
-		assertTrue(v==null);
+		assertTrue(v.isEmpty());
 
 	}
 	
@@ -50,7 +50,7 @@ public class ElementFinderTest {
 		}
 		
 		v=ElementFinder.elementsOfNorm(7, new NegativeSquareFreeInteger(-5));
-		assertTrue(v==null);
+		assertTrue(v.isEmpty());
 
 	}
 
