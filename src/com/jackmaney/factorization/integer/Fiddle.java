@@ -1,7 +1,5 @@
 package com.jackmaney.factorization.integer;
 
-import java.util.Collections;
-import java.util.Vector;
 
 import com.jackmaney.factorization.quadratic.imaginary.Element;
 

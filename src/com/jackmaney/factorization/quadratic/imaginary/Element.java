@@ -2,11 +2,8 @@ package com.jackmaney.factorization.quadratic.imaginary;
 
 import java.util.Comparator;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 import java.util.Vector;
-
-import javax.management.RuntimeErrorException;
 
 import com.jackmaney.factorization.Multiplicative;
 import com.jackmaney.factorization.integer.NegativeSquareFreeInteger;
