@@ -256,7 +256,7 @@ public class Element implements Multiplicative<Element>,Comparator<Element>,Comp
 		return result;
 	}
 	
-	private Vector<Element> findAllIrreducibles() {
+	public Vector<Element> getAllIrreducibles() {
 		
 		int n = norm();
 		
@@ -298,7 +298,32 @@ public class Element implements Multiplicative<Element>,Comparator<Element>,Comp
 		return result;
 	}
 	
-	
+	/**
+	 * This method returns the maximum power <code>n</code> 
+	 * for which <code>e^n</code> divides <code>this</code>. 
+	 * In other words, the maximum <code>n</code> such that 
+	 * <code>power.divides(this) != null</code>, where 
+	 * <code>power</code> is the <code>Element</code> obtained by 
+	 * taking the <code>n</code>th power of <code>e</code>.
+	 * 
+	 * If <code>e</code> doesn't divide <code>this</code>, then 0 is returned.
+	 * 
+	 * @param e
+	 * @return
+	 */
+	public int maxPowerDivisor(Element e){
+		
+		int result = 0;
+		
+		Element pow = e;
+		
+		while(pow.divides(this) != null){
+			result++;
+			pow = pow.multiply(e);
+		}
+		
+		return result;
+	}
 
 	
 	
