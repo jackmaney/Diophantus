@@ -1,10 +1,14 @@
 package com.jackmaney.factorization.quadratic.imaginary;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.Vector;
 
+import com.jackmaney.factorization.ExponentList;
+import com.jackmaney.factorization.Factorization;
 import com.jackmaney.factorization.Multiplicative;
 import com.jackmaney.factorization.integer.NegativeSquareFreeInteger;
 import com.jackmaney.factorization.integer.Util;
@@ -26,15 +30,6 @@ public class Element implements Multiplicative<Element>,Comparator<Element>,Comp
 		this(a,b,d.intValue());
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -321,6 +316,36 @@ public class Element implements Multiplicative<Element>,Comparator<Element>,Comp
 		
 		return result;
 	}
+	
+	public Vector<Factorization<Element>> getIrreducibleFactorizations(){
+		
+		Vector<Element> irreducibles = getAllIrreducibles();
+		
+		Collections.sort(irreducibles);
+		
+		Vector<Integer> maxPowers = new Vector<>();
+		
+		for (Element irr : irreducibles) {
+			maxPowers.add(maxPowerDivisor(irr));
+		}
+		
+		Vector<Factorization<Element>> result = new Vector<>();
+		
+		ExponentList exponents = new ExponentList(maxPowers);
+		
+		Iterator<ExponentList> it = exponents.iterator();
+		
+		while(it.hasNext()){
+			Factorization<Element> factorization = 
+					new Factorization<>(irreducibles, it.next());
+			
+			if(factorization.product().equals(this)){
+				result.add(factorization);
+			}
+		}
+		
+		return result;
+	}
 
 	
 	
@@ -413,6 +438,32 @@ public class Element implements Multiplicative<Element>,Comparator<Element>,Comp
 	public void setRawD(NegativeSquareFreeInteger d)
 	{
 		this.d = d;
+	}
+
+	@Override
+	public Element pow(int n) {
+		Element result = null;
+		
+		if(n<0){
+			throw new IllegalArgumentException();
+		}
+		else if(n == 0){
+			result = getIdentity();
+		}
+		else{
+			result = this;
+			
+			for(int i = 2; i <= n; i++){
+				result = result.multiply(this);
+			}
+		}
+		
+		return result;
+	}
+
+	@Override
+	public Element getIdentity() {
+		return new Element(1,0,getD());
 	}
 
 

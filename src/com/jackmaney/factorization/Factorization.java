@@ -91,6 +91,20 @@ public class Factorization<T extends Multiplicative<T> & Comparable<T>>{
 	}
 	
 	
+	public Factorization(Vector<T> bases,ExponentList exponents){
+		if(bases.size() != exponents.getExponentList().size()){
+			throw new IllegalArgumentException();
+		}
+		
+		Vector<Power<T>> v = new Vector<>();
+		
+		for(int i = 0; i < bases.size(); i++){
+			v.add(new Power<T>(bases.get(i),exponents.getExponentList().get(i)));
+		}
+		
+		this.factorization = consolidate(v);
+	}
+	
 	
 	/**
 	 * This method multiplies--via the <code>multiply()</code> method provided 

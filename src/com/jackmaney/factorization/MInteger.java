@@ -64,4 +64,31 @@ public class MInteger extends Number implements Multiplicative<MInteger>,Compara
 		return a.compareTo(b);
 	}
 
+	@Override
+	public MInteger pow(int n) {
+		
+		MInteger result = null;
+		
+		if(n < 0){
+			throw new IllegalArgumentException();
+		}
+		else if(n == 0){
+			result = getIdentity();
+		}
+		else{
+			result = this;
+			
+			for(int i = 2; i <= n; i++){
+				result = result.multiply(this);
+			}
+		}
+		
+		return result;
+	}
+
+	@Override
+	public MInteger getIdentity() {
+		return new MInteger(1);
+	}
+
 }

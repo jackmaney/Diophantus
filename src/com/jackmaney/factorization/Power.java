@@ -112,20 +112,7 @@ public class Power<T extends Multiplicative<T> & Comparable<T>>
 	 */
 	public T product()
 	{
-		T base = getBase();
-		int exponent = getExponent();
-		
-		if(exponent>0)
-		{
-			T result = base;
-			for(int i=2;i<=exponent;i++)
-			{
-				result = result.multiply(base);
-			}
-			return result;
-		}
-		
-		return null;
+		return getBase().pow(exponent);
 	}
 
 	/**
@@ -146,16 +133,13 @@ public class Power<T extends Multiplicative<T> & Comparable<T>>
 		int exp1 = o1.getExponent();
 		int exp2 = o2.getExponent();
 		
-		if(base1.compareTo(base2)>0)
-		{
-			return 1;
+		if(base1.compareTo(base2) != 0){
+			return base1.compareTo(base2);
 		}
-		if(base1.compareTo(base2)<0)
-		{
-			return -1;
+		else if(exp1 == exp2){
+			return 0;
 		}
-		else
-		{
+		else{
 			return exp1 <= exp2 ? -1 : 1;
 		}
 	}
