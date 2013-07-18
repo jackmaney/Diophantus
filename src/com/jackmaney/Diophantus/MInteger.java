@@ -1,4 +1,4 @@
-package com.jackmaney.factorization;
+package com.jackmaney.Diophantus;
 
 public class MInteger extends Number implements Multiplicative<MInteger>,Comparable<MInteger> {
 	

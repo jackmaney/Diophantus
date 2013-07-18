@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import com.jackmaney.Diophantus.element.Element;
+
 public class ElementTest {
 
 	private Element e1 = new Element(1,-1,-5);

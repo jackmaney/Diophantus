@@ -7,6 +7,8 @@ import java.util.Vector;
 
 import org.junit.Test;
 
+import com.jackmaney.Diophantus.element.Element;
+
 public class GetAllIrreduciblesTest {
 
 	private int d = -14;

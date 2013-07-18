@@ -6,7 +6,9 @@ import java.util.Vector;
 
 import org.junit.Test;
 
-import com.jackmaney.factorization.integer.NegativeSquareFreeInteger;
+import com.jackmaney.Diophantus.element.Element;
+import com.jackmaney.Diophantus.element.ElementFinder;
+import com.jackmaney.Diophantus.integer.NegativeSquareFreeInteger;
 
 public class ElementFinderTest {
 

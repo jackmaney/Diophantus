@@ -6,6 +6,8 @@ import java.util.Vector;
 
 import org.junit.Test;
 
+import com.jackmaney.Diophantus.ExponentList;
+
 public class ExponentListTest {
 	
 	

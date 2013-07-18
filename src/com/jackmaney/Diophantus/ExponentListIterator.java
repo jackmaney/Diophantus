@@ -1,4 +1,4 @@
-package com.jackmaney.factorization;
+package com.jackmaney.Diophantus;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

@@ -7,6 +7,8 @@ import java.util.Vector;
 
 import org.junit.Test;
 
+import com.jackmaney.Diophantus.element.Element;
+
 public class GetAllFactorsTest {
 	
 	private Element e1 = new Element(6, 0, -5);

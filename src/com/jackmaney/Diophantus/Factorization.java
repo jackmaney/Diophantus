@@ -1,4 +1,4 @@
-package com.jackmaney.factorization;
+package com.jackmaney.Diophantus;
 
 import java.util.Collections;
 import java.util.Hashtable;

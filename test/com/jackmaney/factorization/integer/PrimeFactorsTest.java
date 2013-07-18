@@ -5,8 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.jackmaney.factorization.Factorization;
-import com.jackmaney.factorization.MInteger;
+import com.jackmaney.Diophantus.Factorization;
+import com.jackmaney.Diophantus.MInteger;
+import com.jackmaney.Diophantus.integer.Util;
 
 public class PrimeFactorsTest {
 

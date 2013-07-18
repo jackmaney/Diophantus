@@ -1,7 +1,7 @@
-package com.jackmaney.factorization.integer;
+package com.jackmaney.Diophantus.integer;
 
 
-import com.jackmaney.factorization.quadratic.imaginary.Element;
+import com.jackmaney.Diophantus.element.Element;
 
 
 public class Fiddle {

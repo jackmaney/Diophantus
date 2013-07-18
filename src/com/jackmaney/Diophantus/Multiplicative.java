@@ -1,4 +1,4 @@
-package com.jackmaney.factorization;
+package com.jackmaney.Diophantus;
 
 public interface Multiplicative<T> {
 

@@ -6,6 +6,8 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
+import com.jackmaney.Diophantus.element.Element;
+
 public class ElementSortTest {
 	
 	private Element e1 = new Element(1, 1, -5);

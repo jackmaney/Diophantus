@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import com.jackmaney.Diophantus.element.Element;
+
 public class MaxPowerDivisorTest {
 
 	private int d = -14;

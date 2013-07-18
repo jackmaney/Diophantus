@@ -1,4 +1,4 @@
-package com.jackmaney.factorization.quadratic.imaginary;
+package com.jackmaney.Diophantus.element;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -7,11 +7,11 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.Vector;
 
-import com.jackmaney.factorization.ExponentList;
-import com.jackmaney.factorization.Factorization;
-import com.jackmaney.factorization.Multiplicative;
-import com.jackmaney.factorization.integer.NegativeSquareFreeInteger;
-import com.jackmaney.factorization.integer.Util;
+import com.jackmaney.Diophantus.ExponentList;
+import com.jackmaney.Diophantus.Factorization;
+import com.jackmaney.Diophantus.Multiplicative;
+import com.jackmaney.Diophantus.integer.NegativeSquareFreeInteger;
+import com.jackmaney.Diophantus.integer.Util;
 
 public class Element implements Multiplicative<Element>,Comparator<Element>,Comparable<Element>{
 	

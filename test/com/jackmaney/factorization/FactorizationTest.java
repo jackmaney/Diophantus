@@ -1,9 +1,15 @@
 package com.jackmaney.factorization;
 
 import static org.junit.Assert.*;
+
 import java.util.Vector;
+
 import org.junit.Before;
 import org.junit.Test;
+
+import com.jackmaney.Diophantus.Factorization;
+import com.jackmaney.Diophantus.MInteger;
+import com.jackmaney.Diophantus.Power;
 
 public class FactorizationTest {
 	
