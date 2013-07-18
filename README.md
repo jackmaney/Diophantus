@@ -23,7 +23,7 @@ The ultimate aim of this software distribution is to compute, for given <code>a<
 Example
 -------
 
-Take a look at the file [Diophantus.java in com.jackmaney.Diophantus](https://raw.github.com/jackmaney/Diophantus/src/com/jackmaney/Diophantus/Diophantus.java). The source of that file (as of this writing) is:
+Take a look at the file [Diophantus.java in com.jackmaney.Diophantus](https://github.com/jackmaney/Diophantus/blob/master/src/com/jackmaney/Diophantus/Diophantus.java). The source of that file (as of this writing) is:
 
 <pre>
 	package com.jackmaney.Diophantus;
