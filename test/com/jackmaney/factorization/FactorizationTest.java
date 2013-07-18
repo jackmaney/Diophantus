@@ -38,7 +38,8 @@ public class FactorizationTest {
 	@Test
 	public void testToString() {
 		
-		assertTrue("toString() test failed", f.toString().equals("2^4*3^5*5^1"));
+		System.out.println(f.toString());
+		assertTrue("toString() test failed", f.toString().equals("2^4*3^5*5"));
 		
 		
 	}

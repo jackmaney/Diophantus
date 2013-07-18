@@ -49,7 +49,7 @@ public class PrimeFactorsTest {
 	@Test
 	public void testToString()
 	{
-		assertTrue(f.toString().equals("2^18*37^1"));
+		assertTrue(f.toString().equals("2^18*37"));
 	}
 
 }
