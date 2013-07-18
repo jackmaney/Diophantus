@@ -20,6 +20,46 @@ and it can be shown that each of <code>2, 3, 1+sqrt(-5), 1-sqrt(-5)</code> are i
 
 The ultimate aim of this software distribution is to compute, for given <code>a</code>,<code>b</code>, and <code>d</code>, all of the irreducible factorizations of <code>a + b * sqrt(d)</code> in <code>Z[sqrt(d)]</code>.
 
+Example
+-------
+
+Take a look at the file [Diophantus.java in com.jackmaney.Diophantus](https://raw.github.com/jackmaney/Diophantus/src/com/jackmaney/Diophantus/Diophantus.java). The source of that file (as of this writing) is:
+
+<pre>
+	package com.jackmaney.Diophantus;
+
+
+	import com.jackmaney.Diophantus.element.Element;
+
+
+	public class Diophantus {
+
+		public static void main(String[] args) {
+			Element e = new Element(6,0,-5);
+			
+			System.out.println(e.getIrreducibleFactorizations());
+			
+
+		}
+
+	}
+</pre>
+
+Note that we're creating a new `Element` that corresponds to `6 = 6 + 0 * sqrt(-5)`. The output is a `Vector` of [`Factorizations`](https://raw.github.com/jackmaney/Diophantus/src/com/jackmaney/Factorization.java) that, when printed, looks like
+
+<pre>[(1 - 1 * sqrt(-5))*(1 + 1 * sqrt(-5)), 2*3]</pre>
+
+conforming to our expectations above. Of course, feel free to tinker around with the parameters in this class. For example:
+
+* The irreducible factorizations of `81` in `Z[sqrt(-14)]` are `[(5 - 2 * sqrt(-14))*(5 + 2 * sqrt(-14)), 3^4]`.
+* There is only one irreducible factorization of `1024 + 768 * sqrt(-39)` in `Z[sqrt(-39)]`, namely `2^8*(4 + 3 * sqrt(-39))`.
+* That doesn't mean that every element of `Z[sqrt(-39)]` enjoys unique factorization! The factorizations of `1000 + 1000 * sqrt(-39)` are:
+<pre>[5*(19 + 1 * sqrt(-39))*(29 + 9 * sqrt(-39)), 2*5*(7 + 3 * sqrt(-39))*(31 + 1 * sqrt(-39)), 2^3*5^3*(1 + 1 * sqrt(-39))]</pre>
+* There are two factorizations of `1024 + 768 * sqrt(-191)` in `Z[sqrt(-191)]`:
+
+<pre>[(33 + 1 * sqrt(-191))*(141 + 19 * sqrt(-191)), 2^8*(4 + 3 * sqrt(-191))]</pre>
+
+
 Why "Diophantus"?
 -------
 
@@ -29,7 +69,9 @@ Why "Diophantus"?
 
 Hence, the name.
 
-Note
+Contact
 -------
 
-This is a work in progress.
+Jack Maney
+* [http://jackmaney.com](jackmaney.com)
+* [mailto:jackmaney@gmail.com](jackmaney@gmail.com)
