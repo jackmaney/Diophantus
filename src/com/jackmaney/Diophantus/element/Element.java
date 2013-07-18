@@ -87,7 +87,19 @@ public class Element implements Multiplicative<Element>,Comparator<Element>,Comp
 	 */
 	@Override
 	public String toString() {
-		return getA() + " + " + getB() + " * sqrt(" + getD() + ")";
+		
+		if(getB() == 0){
+			return String.valueOf(getA());
+		}
+		else if(getB() > 0){
+			return getA() + " + " + getB() + " * sqrt(" + getD() + ")";
+		}
+		else{
+			int b = -1 * getB();
+			
+			return getA() + " - " + b + " * sqrt(" + getD() + ")";
+		}
+		
 	}
 	
 	
@@ -319,31 +331,39 @@ public class Element implements Multiplicative<Element>,Comparator<Element>,Comp
 	
 	public Vector<Factorization<Element>> getIrreducibleFactorizations(){
 		
-		Vector<Element> irreducibles = getAllIrreducibles();
-		
-		Collections.sort(irreducibles);
-		
-		Vector<Integer> maxPowers = new Vector<>();
-		
-		for (Element irr : irreducibles) {
-			maxPowers.add(maxPowerDivisor(irr));
-		}
-		
 		Vector<Factorization<Element>> result = new Vector<>();
 		
-		ExponentList exponents = new ExponentList(maxPowers);
+		Vector<Element> irreducibles = getAllIrreducibles();
 		
-		Iterator<ExponentList> it = exponents.iterator();
+		//getAllIrreducibles() returns **PROPER** irreducible factors,
+		//so if the list is empty, then our element is irreducible!
 		
-		while(it.hasNext()){
+		if(irreducibles.isEmpty()){
+			result.add(new Factorization<Element>(this));
+		}
+		else{
 			
-			ExponentList exp = it.next();
-			System.out.println(exp);
-			Factorization<Element> factorization = 
-					new Factorization<>(irreducibles, exp);
+			Collections.sort(irreducibles);
 			
-			if(factorization.product().equals(this)){
-				result.add(factorization);
+			Vector<Integer> maxPowers = new Vector<>();
+			
+			for (Element irr : irreducibles) {
+				maxPowers.add(maxPowerDivisor(irr));
+			}
+			
+			ExponentList exponents = new ExponentList(maxPowers);
+			
+			Iterator<ExponentList> it = exponents.iterator();
+			
+			while(it.hasNext()){
+				
+				ExponentList exp = it.next();
+				Factorization<Element> factorization = 
+						new Factorization<>(irreducibles, exp);
+				
+				if(factorization.product().equals(this)){
+					result.add(factorization);
+				}
 			}
 		}
 		

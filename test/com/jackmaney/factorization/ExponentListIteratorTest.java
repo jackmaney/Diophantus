@@ -47,22 +47,13 @@ public class ExponentListIteratorTest {
 		
 		int counter = 0;
 		
-		Vector<Vector<Integer>> outputs = new Vector<>();
 		while(it.hasNext()){
 			
 
 			Vector<Integer> a = expected.get(counter);
 			Vector<Integer> b = it.next().getExponentList();
 			
-			outputs.add(b);
-			
-			//System.out.println(b);
-			
-			//System.out.println(a + "  " + b + "  " + a.equals(b));
-			
 			assertTrue(a.equals(b));
-			
-			//assertTrue(expected.contains(b));
 			
 			counter++;
 		}

@@ -105,6 +105,20 @@ public class Factorization<T extends Multiplicative<T> & Comparable<T>>{
 		this.factorization = consolidate(v);
 	}
 	
+	public Factorization(T t){
+		Vector<Power<T>> v = new Vector<>();
+		Power<T> p = new Power<T>(t);
+		v.add(p);
+		
+		this.factorization = v;
+	}
+	
+	public Factorization(Power<T> p){
+		Vector<Power<T>> v = new Vector<>();
+		v.add(p);
+		this.factorization = v;
+	}
+	
 	
 	/**
 	 * This method multiplies--via the <code>multiply()</code> method provided 
@@ -154,6 +168,32 @@ public class Factorization<T extends Multiplicative<T> & Comparable<T>>{
 	}
 	
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((factorization == null) ? 0 : factorization.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Factorization<?> other = (Factorization<?>) obj;
+		if (factorization == null) {
+			if (other.getFactorization() != null)
+				return false;
+		} else if (!factorization.equals(other.getFactorization()))
+			return false;
+		return true;
+	}
+
 	public Vector<Power<T>> getFactorization() {
 		return factorization;
 	}

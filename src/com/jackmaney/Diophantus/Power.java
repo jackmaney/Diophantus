@@ -1,6 +1,7 @@
 package com.jackmaney.Diophantus;
 
 import java.util.Comparator;
+import java.util.regex.Pattern;
 
 /**
  * 
@@ -66,18 +67,18 @@ public class Power<T extends Multiplicative<T> & Comparable<T>>
 		
 		StringBuffer result = new StringBuffer();
 		
-		if(getBase() instanceof MInteger )
+		if(Pattern.matches("^[1-9]\\d*$", getBase().toString()) )
 		{
 			result.append(getBase().toString());
-			result.append("^");
-			result.append(getExponent());
 		}
 		else
 		{
 			result.append("(").append(getBase().toString()).append(")");
-			result.append("^").append(getExponent());
 		}
 		
+		if(getExponent() > 1){
+			result.append("^").append(getExponent());
+		}
 		
 		
 		return result.toString();
@@ -142,6 +143,34 @@ public class Power<T extends Multiplicative<T> & Comparable<T>>
 		else{
 			return exp1 <= exp2 ? -1 : 1;
 		}
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((base == null) ? 0 : base.hashCode());
+		result = prime * result + exponent;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Power<?> other = (Power<?>) obj;
+		if (base == null) {
+			if (other.getBase() != null)
+				return false;
+		} else if (!base.equals(other.base))
+			return false;
+		if (exponent != other.exponent)
+			return false;
+		return true;
 	}
 	
 
