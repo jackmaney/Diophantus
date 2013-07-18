@@ -21,8 +21,25 @@ public class ExponentListIteratorTest {
 		
 		Vector<Vector<Integer>> expected = new Vector<>();
 		
+		expected.add(new Vector<Integer>(Arrays.asList(0,0,1)));
+		expected.add(new Vector<Integer>(Arrays.asList(0,0,2)));
+		expected.add(new Vector<Integer>(Arrays.asList(0,0,3)));
+		expected.add(new Vector<Integer>(Arrays.asList(0,1,0)));
+		expected.add(new Vector<Integer>(Arrays.asList(0,1,1)));
+		expected.add(new Vector<Integer>(Arrays.asList(0,1,2)));
+		expected.add(new Vector<Integer>(Arrays.asList(0,1,3)));
 		expected.add(new Vector<Integer>(Arrays.asList(1,0,0)));
+		expected.add(new Vector<Integer>(Arrays.asList(1,0,1)));
+		expected.add(new Vector<Integer>(Arrays.asList(1,0,2)));
+		expected.add(new Vector<Integer>(Arrays.asList(1,0,3)));
+		expected.add(new Vector<Integer>(Arrays.asList(1,1,0)));
+		expected.add(new Vector<Integer>(Arrays.asList(1,1,1)));
+		expected.add(new Vector<Integer>(Arrays.asList(1,1,2)));
+		expected.add(new Vector<Integer>(Arrays.asList(1,1,3)));
 		expected.add(new Vector<Integer>(Arrays.asList(2,0,0)));
+		expected.add(new Vector<Integer>(Arrays.asList(2,0,1)));
+		expected.add(new Vector<Integer>(Arrays.asList(2,0,2)));
+		expected.add(new Vector<Integer>(Arrays.asList(2,0,3)));
 		expected.add(new Vector<Integer>(Arrays.asList(2,1,0)));
 		expected.add(new Vector<Integer>(Arrays.asList(2,1,1)));
 		expected.add(new Vector<Integer>(Arrays.asList(2,1,2)));
@@ -30,15 +47,27 @@ public class ExponentListIteratorTest {
 		
 		int counter = 0;
 		
-		while(it.hasNext() && counter < 6){
+		Vector<Vector<Integer>> outputs = new Vector<>();
+		while(it.hasNext()){
 			
 
 			Vector<Integer> a = expected.get(counter);
 			Vector<Integer> b = it.next().getExponentList();
 			
+			outputs.add(b);
+			
+			//System.out.println(b);
+			
+			//System.out.println(a + "  " + b + "  " + a.equals(b));
+			
 			assertTrue(a.equals(b));
+			
+			//assertTrue(expected.contains(b));
+			
 			counter++;
 		}
+		
+		assertTrue(counter == 23);
 		
 	}
 

@@ -336,8 +336,11 @@ public class Element implements Multiplicative<Element>,Comparator<Element>,Comp
 		Iterator<ExponentList> it = exponents.iterator();
 		
 		while(it.hasNext()){
+			
+			ExponentList exp = it.next();
+			System.out.println(exp);
 			Factorization<Element> factorization = 
-					new Factorization<>(irreducibles, it.next());
+					new Factorization<>(irreducibles, exp);
 			
 			if(factorization.product().equals(this)){
 				result.add(factorization);
