@@ -45,7 +45,7 @@ Take a look at the file [Diophantus.java in com.jackmaney.Diophantus](https://gi
 	}
 </pre>
 
-Note that we're creating a new `Element` that corresponds to `6 = 6 + 0 * sqrt(-5)`. The output is a `Vector` of [`Factorizations`](https://raw.github.com/jackmaney/Diophantus/src/com/jackmaney/Factorization.java) that, when printed, looks like
+Note that we're creating a new `Element` that corresponds to `6 = 6 + 0 * sqrt(-5)`. The output is a `Vector` of [`Factorizations`](https://github.com/jackmaney/Diophantus/blob/master/src/com/jackmaney/Diophantus/Factorization.java) that, when printed, looks like
 
 <pre>[(1 - 1 * sqrt(-5))*(1 + 1 * sqrt(-5)), 2*3]</pre>
 
