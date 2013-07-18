@@ -74,4 +74,4 @@ Contact
 
 Jack Maney
 * [http://jackmaney.com](jackmaney.com)
-* [mailto:jackmaney@gmail.com](jackmaney@gmail.com)
+* [jackmaney@gmail.com](mailto:jackmaney@gmail.com)
